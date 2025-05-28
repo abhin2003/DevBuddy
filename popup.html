@@ -1,146 +1,154 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Healthy Coding Dashboard</title>
-    <link rel="stylesheet" href="popup.css">
+  <meta charset="utf-8">
+  <style>
+    body {
+      width: 320px;
+      padding: 20px;
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+    }
+    
+    .header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    
+    .header h1 {
+      margin: 0 0 5px 0;
+      font-size: 24px;
+      font-weight: 600;
+    }
+    
+    .header p {
+      margin: 0;
+      opacity: 0.8;
+      font-size: 14px;
+    }
+    
+    .stats {
+      background: rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 15px;
+      margin-bottom: 20px;
+      backdrop-filter: blur(10px);
+    }
+    
+    .stat-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+    
+    .stat-item:last-child {
+      margin-bottom: 0;
+    }
+    
+    .stat-value {
+      font-weight: 600;
+    }
+    
+    .wellness-section {
+      background: rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 15px;
+      margin-bottom: 15px;
+      backdrop-filter: blur(10px);
+    }
+    
+    .wellness-section h3 {
+      margin: 0 0 10px 0;
+      font-size: 16px;
+      font-weight: 600;
+    }
+    
+    .tip {
+      font-size: 13px;
+      line-height: 1.4;
+      opacity: 0.9;
+      margin-bottom: 8px;
+    }
+    
+    .tip:last-child {
+      margin-bottom: 0;
+    }
+    
+    .buttons {
+      display: flex;
+      gap: 10px;
+    }
+    
+    .btn {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.2);
+      color: white;
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .btn:hover {
+      background: rgba(255,255,255,0.3);
+      transform: translateY(-1px);
+    }
+    
+    .reset-btn {
+      background: rgba(255,0,0,0.3);
+    }
+    
+    .reset-btn:hover {
+      background: rgba(255,0,0,0.4);
+    }
+  </style>
 </head>
 <body>
-    <div class="dashboard">
-        <!-- Header -->
-        <div class="header">
-            <div class="logo">
-                <div class="logo-icon">🧘‍♀️</div>
-                <h1>Healthy Coding</h1>
-            </div>
-            <div class="status-indicator" id="statusIndicator">
-                <div class="status-dot"></div>
-                <span class="status-text">Inactive</span>
-            </div>
-        </div>
-
-        <!-- Current Session -->
-        <div class="section current-session" id="currentSession">
-            <h2>Current Session</h2>
-            <div class="session-info">
-                <div class="session-time">
-                    <span class="time-value" id="currentTime">00:00</span>
-                    <span class="time-label">Active Time</span>
-                </div>
-                <div class="session-site">
-                    <span class="site-name" id="currentSite">Not coding</span>
-                </div>
-            </div>
-            <div class="session-actions">
-                <button class="btn primary" id="takeBreakBtn" style="display: none;">
-                    Take Break Now
-                </button>
-            </div>
-        </div>
-
-        <!-- Today's Stats -->
-        <div class="section stats-section">
-            <h2>Today's Progress</h2>
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-icon">⏰</div>
-                    <div class="stat-content">
-                        <span class="stat-value" id="totalTime">0m</span>
-                        <span class="stat-label">Total Time</span>
-                    </div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon">🎯</div>
-                    <div class="stat-content">
-                        <span class="stat-value" id="sessionsCount">0</span>
-                        <span class="stat-label">Sessions</span>
-                    </div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon">🔥</div>
-                    <div class="stat-content">
-                        <span class="stat-value" id="streakDays">0</span>
-                        <span class="stat-label">Day Streak</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Wellness Tools -->
-        <div class="section wellness-section">
-            <h2>Wellness Tools</h2>
-            <div class="wellness-grid">
-                <button class="wellness-card" id="stretchBtn">
-                    <div class="wellness-icon">🤸‍♂️</div>
-                    <div class="wellness-text">
-                        <span class="wellness-title">Quick Stretch</span>
-                        <span class="wellness-desc">2-minute routine</span>
-                    </div>
-                </button>
-                <button class="wellness-card" id="eyeRestBtn">
-                    <div class="wellness-icon">👀</div>
-                    <div class="wellness-text">
-                        <span class="wellness-title">Eye Rest</span>
-                        <span class="wellness-desc">20-20-20 rule</span>
-                    </div>
-                </button>
-                <button class="wellness-card" id="hydrationBtn">
-                    <div class="wellness-icon">💧</div>
-                    <div class="wellness-text">
-                        <span class="wellness-title">Hydration</span>
-                        <span class="wellness-desc">Water reminder</span>
-                    </div>
-                </button>
-                <button class="wellness-card" id="postureBtn">
-                    <div class="wellness-icon">🪑</div>
-                    <div class="wellness-text">
-                        <span class="wellness-title">Posture Check</span>
-                        <span class="wellness-desc">Alignment tips</span>
-                    </div>
-                </button>
-            </div>
-        </div>
-
-        <!-- Settings -->
-        <div class="section settings-section">
-            <h2>Settings</h2>
-            <div class="settings-group">
-                <label class="setting-item">
-                    <span class="setting-label">Break Reminder (minutes)</span>
-                    <select id="reminderInterval" class="setting-input">
-                        <option value="15">15 minutes</option>
-                        <option value="20">20 minutes</option>
-                        <option value="25" selected>25 minutes</option>
-                        <option value="30">30 minutes</option>
-                        <option value="45">45 minutes</option>
-                    </select>
-                </label>
-                <label class="setting-item">
-                    <span class="setting-label">Notifications</span>
-                    <input type="checkbox" id="enableNotifications" class="setting-checkbox" checked>
-                </label>
-                <label class="setting-item">
-                    <span class="setting-label">Sound Alerts</span>
-                    <input type="checkbox" id="enableSounds" class="setting-checkbox">
-                </label>
-            </div>
-        </div>
+  <div class="header">
+    <h1>🏥 CodeWell</h1>
+    <p>Your Coding Health Companion</p>
+  </div>
+  
+  <div class="stats">
+    <div class="stat-item">
+      <span>Current Session:</span>
+      <span class="stat-value" id="currentSession">0m</span>
     </div>
-
-    <!-- Wellness Modal -->
-    <div class="modal" id="wellnessModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 id="modalTitle">Wellness Exercise</h2>
-                <button class="modal-close" id="modalClose">✕</button>
-            </div>
-            <div class="modal-body" id="modalBody">
-                <!-- Content will be dynamically loaded -->
-            </div>
-        </div>
+    <div class="stat-item">
+      <span>Total Today:</span>
+      <span class="stat-value" id="totalTime">0m</span>
     </div>
-
-    <script src="popup.js"></script>
+    <div class="stat-item">
+      <span>Status:</span>
+      <span class="stat-value" id="status">Active</span>
+    </div>
+  </div>
+  
+  <div class="wellness-section">
+    <h3>💪 Quick Stretches</h3>
+    <div class="tip">• Roll your shoulders backward 10 times</div>
+    <div class="tip">• Neck rotations - 5 each direction</div>
+    <div class="tip">• Wrist circles - 10 each direction</div>
+  </div>
+  
+  <div class="wellness-section">
+    <h3>💧 Hydration & Eyes</h3>
+    <div class="tip">• Drink a glass of water now</div>
+    <div class="tip">• 20-20-20 rule: Look 20ft away for 20 seconds</div>
+    <div class="tip">• Blink deliberately 20 times</div>
+  </div>
+  
+  <div class="buttons">
+    <button class="btn" id="stretchBtn">Take Break</button>
+    <button class="btn reset-btn" id="resetBtn">Reset Stats</button>
+  </div>
+  
+  <script src="popup.js"></script>
 </body>
 </html>
