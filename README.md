@@ -14,14 +14,3 @@
 
 ---
 
-## 📂 Folder Structure
-
-devbuddy/
-├── manifest.json
-├── background.js
-├── content.js
-├── popup.html
-├── popup.js
-├── style.css
-├── utils.js
-└── icon.png
